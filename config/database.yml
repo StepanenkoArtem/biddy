@@ -5,20 +5,17 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV.fetch("POSTGRESS_HOST") %>
+  host: <%= ENV.fetch("POSTGRES_HOST") %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') %>
+  username: <%= ENV.fetch('POSTGRES_USER') %>
 development:
   <<: *default
   database: biddy_development
-
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  username: <%= ENV.fetch('POSTGRESS_USER')
-
   # The password associated with the postgres role (username).
-  password: <%= ENV.fetch('POSTGRESS_PASSWORD')
-
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
@@ -26,10 +23,9 @@ development:
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  port: 5432
+  # port: 5432
   # Schema search path. The server defaults to $user,public
   # schema_search_path: myapp,sharedapp,public
-
   # Minimum log levels, in increasing order:
   #   debug5, debug4, debug3, debug2, debug1,
   #   log, notice, warning, error, fatal, and panic
@@ -49,15 +45,15 @@ test:
 # Instead, provide the password or a full connection URL as an environment
 # variable when you boot the app. For example:
 #
-#   POSTGRESS_URL="postgres://myuser:mypass@localhost/somedatabase"
+#   POSTGRES_URL="postgres://myuser:mypass@localhost/somedatabase"
 #
-# If the connection URL is provided in the special POSTGRESS_URL environment
+# If the connection URL is provided in the special POSTGRES_URL environment
 # variable, Rails will automatically merge its configuration values on top of
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
 #   production:
-#     url: <%= ENV["MY_APP_POSTGRESS_URL"] %>
+#     url: <%= ENV["MY_APP_POSTGRES_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
@@ -65,5 +61,5 @@ test:
 production:
   <<: *default
   database: biddy_production
-  username: <%= ENV.fetch("POSTGRESS_USER") %>
-  password: <%= ENV.fetch("POSTGRESS_PASSWORD") %>
+  username: <%= ENV.fetch("POSTGRES_USER") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
