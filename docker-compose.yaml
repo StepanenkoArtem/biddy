@@ -1,0 +1,28 @@
+---
+version: '3.9'
+services:
+  app:
+    build: .
+    ports: [ 3000:3000 ]
+    env_file: .env
+    # volumes: [ .:/app ]
+    command: bin/rails server -p 3000 -b 0.0.0.0
+  db:
+    image: postgres:14.2
+    ports: [ 5432:5432 ]
+    volumes: [ biddy-db:/var/lib/postgres/data ]
+    env_file: .env
+  sidekiq:
+    build:
+      context: .
+    command: bin/bundle exec sidekiq
+    # volumes: [ .:./app ]
+    env_file: .env
+    depends_on: [ redis ]
+  redis:
+    image: redis:7.0
+    ports: [ 6379:6379 ]
+    volumes: [ biddy-redis:/var/lib/redis/data ]
+volumes:
+  biddy-db:
+  biddy-redis:
