@@ -4,7 +4,7 @@ build:
 	docker compose build
 
 update:
-	docker compose run --rm app bin/bundle install
+	docker compose build --no-cache
 
 lint:
 	docker compose run --rm app bin/bundle exec rubocop
