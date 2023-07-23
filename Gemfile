@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -60,6 +62,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'rubocop'
+  gem 'rubocop-rails', '~> 2.20'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -72,6 +75,9 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
+  gem 'rspec-rails', '~> 6.0.0'
+  # gem 'selenium-webdriver'
+  # gem 'webdrivers'
 end
+
+gem 'rubocop-capybara', '~> 2.18'
