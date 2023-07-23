@@ -8,7 +8,7 @@ ENV USER_GROUP=biddy
 
 # Create a group and user
 RUN addgroup -g 1000 ${USER_GROUP} && \
-  adduser -u 1001 -G ${USER} -s /bin/sh -D ${USER} 
+  adduser -u 1000 -G ${USER} -s /bin/sh -D ${USER} 
 
 # Change to non-root privilege
 USER ${USER}:${USER_GROUP}

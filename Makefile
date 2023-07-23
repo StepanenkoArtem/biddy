@@ -3,8 +3,8 @@
 build:
 	docker compose build
 
-update:
-	docker compose build --no-cache
+install:
+	docker compose run --rm app bin/bundle install 
 
 lint:
 	docker compose run --rm app bin/bundle exec rubocop
@@ -19,3 +19,4 @@ db-drop:
 	docker compose run --rm app bin/rails db:drop
 
 db-seed:
+	docker compose run --rm app bundle rails db:seed
