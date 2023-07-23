@@ -4,7 +4,7 @@ set -e
 
 rm -f /biddy/app/tmp/pids/server.pid
 
-bin/bundle binstubs rake
+ # bin/bundle binstubs rake
 
 # bundle install
 
