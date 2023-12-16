@@ -82,3 +82,5 @@ group :test do
 end
 
 gem 'rubocop-capybara', '~> 2.18'
+
+gem "tailwindcss-rails", "~> 2.0"
