@@ -2,3 +2,5 @@ require: [ rubocop-rails, rubocop-capybara ]
 AllCops:
   Exclude: [ bin/** ]
   NewCops: enable
+Style/Documentation:
+  Enabled: false
