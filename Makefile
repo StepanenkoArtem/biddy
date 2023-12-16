@@ -1,5 +1,8 @@
 .PHONY: test
 
+start:
+	docker compose up
+
 build:
 	docker compose build
 
@@ -22,4 +25,4 @@ db-drop:
 	docker compose run --rm app bin/rails db:drop
 
 db-seed:
-	docker compose run --rm app bundle rails db:seed
+	docker compose run --rm app bin/rails db:seed

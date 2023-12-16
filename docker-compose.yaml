@@ -6,12 +6,12 @@ services:
     ports: ["3000:3000"]
     env_file: .env
     volumes: ["bundler_gems:/bundler_gems", ".:/home/biddy/app"]
-    depends_on: [db]
+    depends_on: [db, sidekiq]
     command: bin/rails server -p 3000 -b 0.0.0.0
   db:
     image: postgres:14.2
     ports: ["5432:5432"]
-    volumes: ["biddy-db:/var/lib/postgres/data"]
+    volumes: ["biddy-db:/etc/data"]
     env_file: .env
   sidekiq:
     build:
