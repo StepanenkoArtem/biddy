@@ -1,8 +1,12 @@
-require: [ rubocop-rails, rubocop-capybara, rubocop-rspec ]
+require:
+  - rubocop-rails
+  - rubocop-capybara
+  - rubocop-rspec
 AllCops:
   Exclude: [ bin/** ]
   Include: 
-   - Gemfile
+    - Gemfile
+    - config/**.rb
   NewCops: enable
 Style/Documentation:
   Enabled: false
