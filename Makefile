@@ -29,3 +29,9 @@ db-drop:
 
 db-seed:
 	docker compose run --rm app bin/rails db:seed
+
+migrate:
+	docker compose run --rm app bin/rails db:migrate
+
+rollback:
+	docker compose run --rm app bin/rails db:rollback
