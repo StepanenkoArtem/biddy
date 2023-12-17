@@ -10,5 +10,8 @@ html.h-full.bg-white
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
   body.h-full
+    p.notice= notice
+    p.alert= alert
+
     main.container.mx-auto.justify-center.flex
       = yield
