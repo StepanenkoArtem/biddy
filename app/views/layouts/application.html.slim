@@ -1,5 +1,5 @@
 doctype html
-html
+html.h-full.bg-white
   head
     title Biddy
     meta name="viewport" content="width=device-width,initial-scale=1"
@@ -9,7 +9,6 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
-  body
-    h1.text-3xl.font-bold.underline Hello world!
-    main.container.mx-auto.mt-28.px-5.flex
+  body.h-full
+    main.container.mx-auto.justify-center.flex
       = yield
