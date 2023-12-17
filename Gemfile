@@ -86,4 +86,4 @@ gem 'rubocop-capybara', '~> 2.18'
 
 gem 'tailwindcss-rails', '~> 2.0'
 
-gem "devise", "~> 4.9"
+gem 'devise', '~> 4.9'
