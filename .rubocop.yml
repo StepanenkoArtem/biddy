@@ -2,11 +2,17 @@ require:
   - rubocop-rails
   - rubocop-capybara
   - rubocop-rspec
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-factory_bot
+  - rubocop-i18n
+
 AllCops:
+  NewCops: enable
   Exclude: [ bin/** ]
   Include: 
     - Gemfile
     - config/**.rb
-  NewCops: enable
 Style/Documentation:
   Enabled: false
+
