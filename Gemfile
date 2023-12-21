@@ -24,6 +24,7 @@ gem 'stimulus-rails'
 gem 'tailwindcss-rails', '~> 2.0'
 gem 'turbo-rails'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
