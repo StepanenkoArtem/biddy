@@ -3,6 +3,9 @@
 start:
 	docker compose up app
 
+sidekiq:
+	docker compose up sidekiq
+
 build:
 	docker compose build --no-cache
 
@@ -10,7 +13,7 @@ watch:
 	docker compose run --rm app bin/dev
 
 install:
-	docker compose run --rm app bin/bundle install && make build
+	docker compose run --rm app bundle install
 
 lint:
 	docker compose run --rm app bin/bundle exec rubocop

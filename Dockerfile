@@ -2,7 +2,8 @@ FROM alpine:3.18
 
 RUN apk update --no-cache && apk add tzdata \
   doas curl git openssl-dev readline-dev zlib-dev yaml-dev ruby npm nodejs ruby-dev build-base openssl-dev postgresql-dev yarn
-RUN npm install -g sass esbuild
+RUN npm install -g sass esbuild 
+RUN gem install bundler && gem update --system && bundle install
 ENV USER=biddy
 ENV USER_GROUP=biddy
 
@@ -20,7 +21,6 @@ ENV PATH="$BUNDLE_PATH/bin:$PATH"
 WORKDIR /home/${USER}/app
 
 COPY Gemfile entrypoint.sh ./
-RUN gem install bundler && bundle install 
 
 COPY --chown=${USER}:${USER_GROUP} . .
 
