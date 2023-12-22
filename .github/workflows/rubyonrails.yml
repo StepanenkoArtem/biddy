@@ -4,13 +4,13 @@
 #
 # This workflow will install a prebuilt Ruby version, install dependencies, and
 # run tests and linters.
-name: "Ruby on Rails CI"
-on:
-  push:
+name: "CI"
+on: 
   pull_request:
     branches: [ "master" ]
 jobs:
   test:
+    name: "RSpec"
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -18,13 +18,13 @@ jobs:
         ports:
           - "5432:5432"
         env:
-          POSTGRES_DB: {{ secrets<F9>.DB_NAME }}
-          POSTGRES_USER: {{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: {{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: $DB_NAME
+          POSTGRES_USER: $POSTGRES_USER
+          POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     env:
       RAILS_ENV: test
-      DATABASE_URL: {{ secrets.POSTGRES_HOST }} 
-      steps:
+      DATABASE_URL: $POSTGRES_HOST
+    steps:
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
@@ -36,9 +36,12 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
       # Add or replace test runners here
+      - name: Install gems
+        run: bin/bundle install
       - name: Run tests
-        run: make test
+        run: bin/bundle exec rspec
   lint:
+    name: "Rubocop"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -53,4 +56,4 @@ jobs:
       #- name: Security audit application code
         #  run: bin/brakeman -q -w2
       - name: Rubocop
-        run: make lint
+        run: bin/bundle exec rubocop
