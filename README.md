@@ -1,4 +1,5 @@
-# README
+[![Maintainability](https://api.codeclimate.com/v1/badges/1834b1171a1619259fea/maintainability)](https://codeclimate.com/github/StepanenkoArtem/biddy/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1834b1171a1619259fea/test_coverage)](https://codeclimate.com/github/StepanenkoArtem/biddy/test_coverage)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
