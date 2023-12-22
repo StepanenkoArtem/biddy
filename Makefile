@@ -10,7 +10,7 @@ watch:
 	docker compose run --rm app bin/dev
 
 install:
-	docker compose run --rm app bin/bundle install 
+	docker compose run --rm app bin/bundle install && make build
 
 lint:
 	docker compose run --rm app bin/bundle exec rubocop

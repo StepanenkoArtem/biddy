@@ -11,6 +11,8 @@ gem 'cssbundling-rails'
 gem 'devise', '~> 4.9'
 gem 'jbuilder'
 gem 'jsbundling-rails'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.6'
@@ -18,14 +20,12 @@ gem 'redis', '~> 4.0'
 gem 'responders', '~> 3.1'
 gem 'rubocop-capybara', '~> 2.18'
 gem 'sidekiq'
+gem 'simplecov', '~> 0.22.0'
 gem 'slim-rails'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'tailwindcss-rails', '~> 2.0'
 gem 'turbo-rails'
-gem "simplecov", "~> 0.22.0"
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
@@ -48,4 +48,3 @@ group :test do
   gem 'capybara'
   gem 'rspec-rails', '~> 6.0.0'
 end
-
