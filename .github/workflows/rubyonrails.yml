@@ -19,14 +19,13 @@ jobs:
         uses: actions/checkout@v3
       - name: Prepare Env
         run: |
-          export PGPASSWORD=$POSTGRES_PASSWORD
+          export POSTGRES_HOST_AUTH_METHOD=trust
           echo "POSTGRES_USER=$POSTGRES_USER" >> .env
           echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
           echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
           echo "POSTGRES_POST=5432" >> .env
-          echo "POSTGRES_URL=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@localhost:5432/$DB_TEST_NAME" >> .env
       - name: Run tests
-        run: docker compose up db
+        run: make test
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
