@@ -38,3 +38,8 @@ migrate:
 
 rollback:
 	docker compose run --rm app bin/rails db:rollback
+
+clear:
+	docker rm $(docker ps -q -a) -f && \
+	docker rmi $(docker images -q) -f
+
