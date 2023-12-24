@@ -17,17 +17,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Install PostgreSQL client
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes postgresql-client
-          sudo systemctl start postgresql.service
       - name: Prepare Env
         run: |
           echo "POSTGRES_USER=$POSTGRES_USER" >> .env
           echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
           echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
           echo "POSTGRES_POST=5432" >> .env
+      - name: Restart Postgres
+        run: sudo systemctl restart postgresql.service
+
       - name: Run tests 
         run: make test
   lint:
