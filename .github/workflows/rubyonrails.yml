@@ -17,9 +17,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Setup PostgreSQL
-        uses: Harmon758/postgresql-action@v1.0.0
-      - name: Prepare Env
+      - name: Install PostgreSQL client
+        run: |
+          apt-get update
+          apt-get install --yes postgresql-client      - name: Prepare Env
+      - name: Prepare DB
         run: |
           echo "POSTGRES_USER=$POSTGRES_USER" >> .env
           echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
