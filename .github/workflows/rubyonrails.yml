@@ -20,8 +20,8 @@ jobs:
       - name: Install PostgreSQL client
         run: |
           apt-get update
-          apt-get install --yes postgresql-client      - name: Prepare Env
-      - name: Prepare DB
+          apt-get install --yes postgresql-client      
+      - name: Prepare Env
         run: |
           echo "POSTGRES_USER=$POSTGRES_USER" >> .env
           echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
