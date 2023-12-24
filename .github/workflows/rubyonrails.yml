@@ -24,9 +24,6 @@ jobs:
           echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
           echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
           echo "POSTGRES_POST=5432" >> .env
-          sudo systemctl enable postgresql
-          sudo systemctl start postgresql
-          sudo systemctl status postgresql
       - name: Run tests
         run: make test
   lint:
