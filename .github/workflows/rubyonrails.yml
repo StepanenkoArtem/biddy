@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Prepare
+        uses: mkdir log
       - name: Run tests
         run: make test
   lint:
