@@ -20,8 +20,8 @@ jobs:
       - name: Install PostgreSQL client
         run: |
           sudo apt-get update
-          sudo apt-get install --yes postgresql-client    
-          sudo systemctl start postgresql.service  
+          sudo apt-get install --yes postgresql-client
+          sudo systemctl start postgresql.service
       - name: Prepare Env
         run: |
           echo "POSTGRES_USER=$POSTGRES_USER" >> .env
