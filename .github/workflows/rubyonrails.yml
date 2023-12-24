@@ -17,10 +17,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Prepare
-        run: mkdir log
       - name: Run tests
-        run: make test
+        run: make build && make test
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
