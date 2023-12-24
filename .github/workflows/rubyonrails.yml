@@ -18,9 +18,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Prepare Environment
-        run:  echo POSTGRES_USER=$POSTGRES_USER >> .env && \
-          echo POSTGRES_PASSWORD=$POSTGRES_PASSWORD >> .env && \
-          echo POSTGRES_HOST=$POSTGRES_HOST
+        run: |
+          echo "POSTGRES_USER=$POSTGRES_USER" >> .env
+          echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
+          echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
       - name: Run tests 
         run: make test
   lint:
