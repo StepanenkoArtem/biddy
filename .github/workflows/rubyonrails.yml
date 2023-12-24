@@ -22,13 +22,10 @@ jobs:
           echo "POSTGRES_USER=$POSTGRES_USER" >> .env
           echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
           echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
-          echo "POSTGRES_POST=5432" >> .env
-      - uses: isbang/compose-action@v1.5.1
-        with:
-         compose-file: "./docker-compose.yml"
- 
-      - name: Run tests 
-        run: make test
+          echo "POSTGRES_POST=5432" >> .env 
+          make test
+      # - name: Run tests 
+      #   run: make test
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
