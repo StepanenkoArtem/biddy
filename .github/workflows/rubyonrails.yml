@@ -27,8 +27,7 @@ jobs:
           sudo systemctl enable postgresql
           sudo systemctl start postgresql
           sudo systemctl status postgresql
-          sudo -u postgres psql
-          psql -U postgres -c "CREATE USER $POSTGRES_USER CREATEDB PASSWORD '$POSTGRES_PASSWORD'"
+          sudo psql -U postgres -c "CREATE USER $POSTGRES_USER CREATEDB PASSWORD '$POSTGRES_PASSWORD'"
       - name: Run tests
         run: docker compose up db
   lint:
