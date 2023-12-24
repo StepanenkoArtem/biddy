@@ -17,15 +17,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Prepare Env
-        run: |
-          export POSTGRES_HOST_AUTH_METHOD=trust
-          echo "POSTGRES_USER=$POSTGRES_USER" >> .env
-          echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
-          echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
-          sudo systemctl enable postgresql
-          sudo systemctl start postgresql
-          sudo systemctl status postgresql
+      # - name: Prepare Env
+      #   run: |
+      #     echo "POSTGRES_USER=$POSTGRES_USER" >> .env
+      #     echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
+      #     echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
+      #     sudo systemctl enable postgresql
+      #     sudo systemctl start postgresql
+      #     sudo systemctl status postgresql
       - name: Run tests
         run: make test
   lint:
