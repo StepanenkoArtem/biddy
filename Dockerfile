@@ -24,6 +24,7 @@ COPY Gemfile entrypoint.sh ./
 COPY --chown=${USER}:${USER_GROUP} . .
 
 RUN gem install bundler && gem update --system && bundle install
+RUN mkdir log tmp && touch log/test.log
 
 ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 3000
