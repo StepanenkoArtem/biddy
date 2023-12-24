@@ -18,11 +18,12 @@ ENV BUNDLE_PATH="$GEM_HOME"
 ENV PATH="$BUNDLE_PATH/bin:$PATH"
 
 WORKDIR /home/${USER}/app
-RUN gem install bundler && gem update --system && bundle install
 
 COPY Gemfile entrypoint.sh ./
 
 COPY --chown=${USER}:${USER_GROUP} . .
+
+RUN gem install bundler && gem update --system && bundle install
 
 ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 3000
