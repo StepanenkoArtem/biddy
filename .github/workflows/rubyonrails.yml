@@ -39,6 +39,10 @@ jobs:
           echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
       - name: Run tests
         run: make test
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_PORT: 5432
+
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
