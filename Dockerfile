@@ -17,7 +17,7 @@ ENV GEM_HOME=/home/${USER}/gems
 ENV BUNDLE_PATH="$GEM_HOME"
 ENV PATH="$BUNDLE_PATH/bin:$PATH"
 
-WORKDIR /home/${USER}/app
+WORKDIR /home/${USER}
 
 COPY Gemfile entrypoint.sh ./
 
@@ -28,4 +28,3 @@ RUN mkdir log tmp && touch log/test.log
 
 ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 3000
-
