@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Setup PostgreSQL
-        uses: Harmon758/postgresql-action@v1.0.0    
+        uses: Harmon758/postgresql-action@v1.0.0
       - name: Prepare Env
         run: |
           echo "POSTGRES_USER=$POSTGRES_USER" >> .env
