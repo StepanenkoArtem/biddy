@@ -12,7 +12,7 @@ services:
   db:
     image: postgres:14.2
     ports: ["5432:5432"]
-    volumes: ["biddy-db:/var/lib/postgresql/data"]
+    volumes: ["biddy-db:/etc/data"]
     env_file:
       - .env
 
