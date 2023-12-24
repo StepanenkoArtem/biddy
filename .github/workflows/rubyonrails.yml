@@ -14,6 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,7 +36,6 @@ jobs:
           echo "POSTGRES_USER=$POSTGRES_USER" >> .env
           echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
           echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
-          sudo systemctl start postgresql
       - name: Run tests
         run: make test
   lint:
