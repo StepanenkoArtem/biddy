@@ -26,7 +26,7 @@ jobs:
           echo "POSTGRES_POST=5432" >> .env
           echo "POSTGRES_URL=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@localhost:5432/$DB_TEST_NAME" >> .env
       - name: Run tests
-        run: make test
+        run: docker compose up db
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
