@@ -29,7 +29,7 @@ jobs:
           echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
           echo "POSTGRES_POST=5432" >> .env
       - name: Run tests 
-        run: make build && make test
+        run: make test
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
