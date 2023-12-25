@@ -16,7 +16,7 @@ jobs:
       RAILS_ENV: test
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Prepare Env
         run: |
           echo "POSTGRES_USER=$POSTGRES_USER" >> .env
