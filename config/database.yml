@@ -9,7 +9,6 @@ default: &default
   port:  <%= ENV.fetch("POSTGRES_PORT") %>
   password: <%= ENV.fetch('POSTGRES_PASSWORD') %>
   username: <%= ENV.fetch('POSTGRES_USER') %>
-  url: <%= ENV.fetch('DATABASE_URL') %>  
 development:
   <<: *default
   database: biddy_development
