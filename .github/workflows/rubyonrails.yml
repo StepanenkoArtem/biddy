@@ -28,8 +28,8 @@ jobs:
 
       - name: Run tests
         run: |
-          docker ps
           docker compose up db -d
+          docker ps
           # make test
   lint:
     name: "Rubocop"
