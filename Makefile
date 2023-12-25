@@ -33,7 +33,7 @@ db-drop:
 db-seed:
 	docker compose run --rm app bin/rails db:seed
 
-migrate:
+migration:
 	docker compose run --rm app bin/rails db:migrate
 
 rollback:
