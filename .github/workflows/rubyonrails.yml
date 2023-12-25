@@ -27,7 +27,10 @@ jobs:
           make build
 
       - name: Run tests
-        run: make test
+        run: |
+          docker ps
+          docker compose up db -d
+          make test
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
