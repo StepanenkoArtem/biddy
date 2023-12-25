@@ -5,11 +5,11 @@ services:
     build: .
     ports: ["3000:3000"]
     volumes: ["bundler_gems:/home/biddy/gems", .:/app]
-    depends_on: [ db ]
+    depends_on: [ postgres ]
     command:  bin/rails server -p 3000 -b 0.0.0.0
     env_file:
       - .env
-  db:
+  postgres:
     image: postgres:14.2
     ports: ["5432:5432"]
     volumes: ["biddy-db:/var/lib/postgresql/data"]
