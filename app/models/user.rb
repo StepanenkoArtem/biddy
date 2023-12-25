@@ -7,4 +7,6 @@ class User < ApplicationRecord
          :registerable, :recoverable,
          :rememberable, :validatable
   # ,  omniauth_providers: [:google]
+  #
+  validates :encrypted_password, presence: true
 end
