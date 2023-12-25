@@ -28,7 +28,7 @@ jobs:
 
       - name: Run tests
         run: |
-          docker compose up db -d
+          docker compose run --rm db
           docker ps
           make test
   lint:
