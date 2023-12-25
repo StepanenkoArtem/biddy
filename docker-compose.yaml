@@ -33,5 +33,4 @@ services:
 volumes:
   biddy-db:
   biddy-redis:
-  bundler_gems:
-
+  bundler_gems
