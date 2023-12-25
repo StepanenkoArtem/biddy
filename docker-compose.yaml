@@ -32,6 +32,9 @@ services:
     image: redis:7.0
     ports: ["6379:6379"]
     volumes: ["biddy-redis:/var/lib/redis/data"]
+    env_file:
+      - .env
+
 volumes:
   biddy-db:
   biddy-redis:

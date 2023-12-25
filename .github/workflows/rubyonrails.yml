@@ -28,6 +28,7 @@ jobs:
 
       - name: Run tests
         run: |
+          docker compose up -it db echo $POSTGRES_PASSWORD
           docker compose run --rm db
           docker ps
           make test
