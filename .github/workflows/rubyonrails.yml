@@ -9,6 +9,22 @@ on:
   pull_request:
     branches: [ "master" ]
 jobs:
+  setup-env:
+    runs-on: ubuntu-latest
+    outputs:
+      env-file: ${{ steps.create-env.outputs.env-file }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Prepare Env
+        id: create-env
+        run: |
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" > .env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
+          echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}" >> .env
+          echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> .env
+          echo "RAILS_ENV=test" >> .env
+          echo "::set-output name=env-file::$(cat .env)"
   test:
     name: "RSpec"
     runs-on: ubuntu-latest
@@ -16,13 +32,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Prepare Env
-        run: |
-          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" >> .env
-          echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
-          echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
-          echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
-          echo "RAILS_ENV=test" >> .env
-
+        run: echo "${{ needs.setup-env.outputs.env-file }}" > .env
       - name: Run tests
         run: |
           make db-create
@@ -35,8 +45,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Prepare Env
-        run: touch .env
-      - name: spin up env
+        run: echo "${{ needs.setup-env.outputs.env-file }}" > .env
+      - name: Run rubocop
         run: make lint
   brakeman:
     name: "Brakeman"
@@ -45,8 +55,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Prepare Env
-        run: touch .env
-      - name: spin up env
+        run: echo "${{ needs.setup-env.outputs.env-file }}" > .env
+      - name: Run brakman
         run: make brakeman
   active_record_doctor:
     name: "AR Doctor"
@@ -55,6 +65,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Prepare Env
-        run: touch .env
-      - name: spin up env
-        run: make doctor
+        run: echo "${{ needs.setup-env.outputs.env-file }}" > .env
+      - name: Run doctor
+        run: |
+          make db-create
+          make migration
+
