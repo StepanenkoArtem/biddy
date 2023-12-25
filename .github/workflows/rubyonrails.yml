@@ -10,6 +10,7 @@ on:
     branches: [ "master" ]
 jobs:
   setup-env:
+    name: Prapare environment
     runs-on: ubuntu-latest
     outputs:
       env-file: ${{ steps.create-env.outputs.env-file }}
@@ -19,10 +20,10 @@ jobs:
       - name: Prepare Env
         id: create-env
         run: |
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" > .env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
-          echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}" >> .env
-          echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> .env
+          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" > .env
+          echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
+          echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
+          echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
           echo "RAILS_ENV=test" >> .env
           echo "::set-output name=env-file::$(cat .env)"
   test:
