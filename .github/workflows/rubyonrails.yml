@@ -9,23 +9,6 @@ on:
   pull_request:
     branches: [ "master" ]
 jobs:
-  setup-env:
-    name: Prapare environment
-    runs-on: ubuntu-latest
-    outputs:
-      env-file: ${{ steps.create-env.outputs.env-file }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Prepare Env
-        id: create-env
-        run: |
-          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" > .env
-          echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
-          echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
-          echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
-          echo "RAILS_ENV=test" >> .env
-          echo "::set-output name=env-file::$(cat .env)"
   test:
     name: "RSpec"
     runs-on: ubuntu-latest
@@ -33,7 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Prepare Env
-        run: echo "${{ needs.setup-env.outputs.env-file }}" > .env
+        run: |
+          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" > .env
+          echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
+          echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
+          echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
+          echo "RAILS_ENV=test" >> .env
       - name: Run tests
         run: |
           make db-create
@@ -46,7 +34,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Prepare Env
-        run: echo "${{ needs.setup-env.outputs.env-file }}" > .env
+        run: touch .env
       - name: Run rubocop
         run: make lint
   brakeman:
@@ -56,7 +44,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Prepare Env
-        run: echo "${{ needs.setup-env.outputs.env-file }}" > .env
+        run: touch .env
       - name: Run brakman
         run: make brakeman
   active_record_doctor:
@@ -66,7 +54,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Prepare Env
-        run: echo "${{ needs.setup-env.outputs.env-file }}" > .env
+        run: |
+          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" > .env
+          echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
+          echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
+          echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
+          echo "RAILS_ENV=test" >> .env
       - name: Run doctor
         run: |
           make db-create
