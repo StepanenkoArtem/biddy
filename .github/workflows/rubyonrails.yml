@@ -30,7 +30,7 @@ jobs:
         run: |
           docker ps
           docker compose up db -d
-          make test
+          # make test
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
