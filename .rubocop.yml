@@ -9,14 +9,8 @@ require:
 
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.2.2
   Exclude: 
     - bin/**/*
-    - vendor/**/*
-    - vendor/bundle/**/*
-    - gemfiles/vendor/bundle/**/*
-  Include: 
-    [ Gemfile ]
 Style/Documentation:
   Enabled: false
 

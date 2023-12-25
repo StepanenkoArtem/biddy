@@ -20,7 +20,7 @@ ENV PATH="$BUNDLE_PATH/bin:$PATH"
 
 COPY Gemfile entrypoint.sh .env ./
 
-WORKDIR /home/${USER}/app
+WORKDIR /home/${USER}/web
 
 COPY --chown=${USER}:${USER_GROUP} . .
 

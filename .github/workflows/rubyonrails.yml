@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Prepare Env
         run: touch .env
       - name: Run rubocop
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Prepare Env
         run: touch .env
       - name: Run brakman
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Prepare Env
         run: |
           echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" > .env
@@ -64,4 +64,5 @@ jobs:
         run: |
           make db-create
           make migration
+          make doctor
 

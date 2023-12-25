@@ -34,8 +34,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'brakeman'
   gem 'active_record_doctor'
+  gem 'brakeman'
   gem 'rubocop', require: false
   gem 'rubocop-factory_bot'
   gem 'rubocop-i18n'
