@@ -42,6 +42,9 @@ rollback:
 brakeman:
 	docker compose run --rm app bin/bundle exec brakeman
 
+doctor:
+	docker compose run --rm app bin/bundle exec rake active_record_doctor
+
 clear:
 	docker rm $(docker ps -q -a) -f && \
 	docker rmi $(docker images -q) -f
