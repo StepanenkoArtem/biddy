@@ -1,0 +1,41 @@
+# This workflow uses actions that are not certified by GitHub.  They are
+# provided by a third-party and are governed by separate terms of service,
+# privacy policy, and support documentation.
+#
+# This workflow will install a prebuilt Ruby version, install dependencies, and
+# run tests and linters.
+name: "CI"
+on: 
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  test:
+    name: "RSpec"
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Prepare Env
+        run: |
+          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" >> .env
+          echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
+          echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
+          echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
+
+      - name: Run tests
+        run: |
+          make db-create
+          make migration
+          make test
+  lint:
+    name: "Rubocop"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Prepare Env
+        run: touch .env
+      - name: spin up env
+        run: make lint

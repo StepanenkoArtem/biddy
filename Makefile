@@ -3,6 +3,9 @@
 start:
 	docker compose up app
 
+sidekiq:
+	docker compose up sidekiq
+
 build:
 	docker compose build --no-cache
 
@@ -10,7 +13,7 @@ watch:
 	docker compose run --rm app bin/dev
 
 install:
-	docker compose run --rm app bin/bundle install && make build
+	docker compose run --rm app bin/bundle install
 
 lint:
 	docker compose run --rm app bin/bundle exec rubocop
@@ -30,8 +33,13 @@ db-drop:
 db-seed:
 	docker compose run --rm app bin/rails db:seed
 
-migrate:
+migration:
 	docker compose run --rm app bin/rails db:migrate
 
 rollback:
 	docker compose run --rm app bin/rails db:rollback
+
+clear:
+	docker rm $(docker ps -q -a) -f && \
+	docker rmi $(docker images -q) -f
+
