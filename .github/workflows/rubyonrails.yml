@@ -23,7 +23,7 @@ jobs:
           echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
           echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
           echo "POSTGRES_PORT=$POSTGRES_PORT" >> .env
-          echo "DATABASE_URL=postgresql://postgres/biddy_test" >> .env
+          echo "DATABASE_URL=postgresql://db/biddy_test" >> .env
 
       - name: Run tests
         run: make test
