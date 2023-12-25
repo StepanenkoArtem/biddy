@@ -12,18 +12,17 @@ jobs:
   test:
     name: "RSpec"
     runs-on: ubuntu-latest
-    env:
-      RAILS_ENV: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Prepare Env
         run: |
-          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" >> .env
+          chmod -R 777 .
+          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" > .env
           echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
           echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
           echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
-
+          echo "RAILS_ENV=test" >> .env
       - name: Run tests
         run: |
           make db-create
@@ -34,18 +33,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Prepare Env
         run: touch .env
-      - name: spin up env
+      - name: Run rubocop
         run: make lint
   brakeman:
     name: "Brakeman"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Prepare Env
         run: touch .env
-      - name: spin up env
+      - name: Run brakman
         run: make brakeman
+  active_record_doctor:
+    name: "AR Doctor"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Prepare Env
+        run: |
+          chmod -R 777 .
+          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" > .env
+          echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
+          echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
+          echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
+          echo "RAILS_ENV=test" >> .env
+      - name: Run doctor
+        run: |
+          make install
+          make db-create
+          make migration
+          make doctor
+

@@ -2,7 +2,7 @@
 
 set -e
 
-rm -f /biddy/app/tmp/pids/server.pid
+rm -f /biddy/tmp/pids/server.pid
 
  # bin/bundle binstubs rake
 
