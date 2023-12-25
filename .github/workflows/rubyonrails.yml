@@ -26,7 +26,7 @@ jobs:
           echo "DATABASE_URL=postgresql://postgres:postgres@db:5432/biddy_test" >> .env
 
       - name: Run tests
-        run: make db-create && make migrate && make test
+        run: make build && make db-create && make migrate && make test
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
