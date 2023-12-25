@@ -23,7 +23,7 @@ jobs:
           echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
           echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
           echo "POSTGRES_PORT=$POSTGRES_PORT" >> .env
-          echo "DATABASE_URL=postgresql://db/biddy_test" >> .env
+          echo "DATABASE_URL=postgresql://postgres/biddy_test" >> .env
 
       - name: Run tests
         run: make test
@@ -34,10 +34,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Prepare Env
-        run: |
-          echo "POSTGRES_USER=$POSTGRES_USER" >> .env
-          echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
-          echo "POSTGRES_HOST=$POSTGRES_HOST" >> .env
-          echo "POSTGRES_POST=5432" >> .env
+        run: touch .env
       - name: spin up env
         run: make lint
