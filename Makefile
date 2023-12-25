@@ -39,6 +39,9 @@ migration:
 rollback:
 	docker compose run --rm app bin/rails db:rollback
 
+brakeman:
+	docker compose run --rm app bin/bundle exec brakeman
+
 clear:
 	docker rm $(docker ps -q -a) -f && \
 	docker rmi $(docker images -q) -f
