@@ -26,12 +26,8 @@ jobs:
 
       - name: Run tests
         run: |
-          ls -al
-          echo "##########################################################################"
-          less .env
-          echo "##########################################################################"
-          docker compose run --rm app env
-          docker ps
+          make db-create
+          make migration
           make test
   lint:
     name: "Rubocop"
