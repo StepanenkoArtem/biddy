@@ -23,6 +23,7 @@ jobs:
           echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
           echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
           echo "RAILS_ENV=test" >> .env
+          echo "CC_TEST_REPORTER_ID=${{ secrets.CC_TEST_REPORTER_ID}}" >> .env
       - name: Run tests
         run: |
           make db-create
@@ -75,16 +76,14 @@ jobs:
     steps:
       - name: Checkout code1
         uses: actions/checkout@v4
-      - uses: actions/setup-node@master
-        with:
-          node-version: '12'
-      - run: npm install -g yarn
-      - run: yarn install
-      - run: yarn build
-      - name: Use Codeclimate Action
-        uses: paambaati/codeclimate-action@v2.2.4
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: yarn run coverage
-          debug: true
+      - name: Fetch reporter
+        run: |
+          curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
+          ls -al
+          env
+      - name: Upload report
+        run: |
+          echo "#################################################"
+          ls -al
+          echo "#################################################"
+          env
