@@ -32,7 +32,6 @@ jobs:
           make db-create
           make migration
           make test
-          ls -al coverage
       - name: Store coverage report
         uses: actions/upload-artifact@v3
         with:
@@ -97,12 +96,10 @@ jobs:
         run: |
           curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
           chmod +x test_reporter
-          ls -al
       - name: Upload report
         run: |
           ./test_reporter before-build
           ./test_reporter format-coverage -t simplecov -p /home/biddy/web
-          ls -al coverage
           ./test_reporter upload-coverage
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID}}
