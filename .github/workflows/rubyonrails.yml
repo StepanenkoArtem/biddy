@@ -29,7 +29,6 @@ jobs:
         run: |
           make db-create
           make migration
-          ./test_reporter before-build
           make test
           ls -al coverage
       - name: Store coverage report
