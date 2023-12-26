@@ -19,7 +19,7 @@ lint:
 	docker compose run --rm app bin/bundle exec rubocop
 
 rubocop-happy:
-	docker compose run --rm app bin/bundle exec rubocop -a
+	docker compose run --rm app bin/bundle exec rubocop -A
 
 test:
 	docker compose run --rm app bin/bundle exec rspec -fd

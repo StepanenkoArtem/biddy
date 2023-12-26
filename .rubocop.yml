@@ -11,7 +11,19 @@ AllCops:
   NewCops: enable
   Exclude: 
     - bin/**/*
+
+Metrics/AbcSize:
+  Exclude:
     - db/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - db/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - db/**/*
+
 Style/Documentation:
   Enabled: false
 
