@@ -28,7 +28,7 @@ jobs:
       - name: Fetch reporter
         run: |
           curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
-          chmod 777 test_reporter
+          chmod -x test_reporter
       - name: Run tests
         run: |
           make db-create
