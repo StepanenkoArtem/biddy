@@ -12,6 +12,8 @@ jobs:
   test:
     name: "RSpec"
     runs-on: ubuntu-latest
+    env:
+      CC_TEST_REPORTER_ID: {{ secrets.CC_TEST_REPORTER_ID }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,11 +25,16 @@ jobs:
           echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
           echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
           echo "RAILS_ENV=test" >> .env
+      - name: Fetch Coverage Reporter
+        run: |
+          curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
       - name: Run tests
         run: |
           make db-create
           make migration
+          test_reporter before-build
           make test
+          test_reporter after-build
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
