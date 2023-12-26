@@ -102,6 +102,6 @@ jobs:
           ./test_reporter format-coverage -t simplecov -p /home/biddy/web
           ls -al coverage
           ./test_reporter upload-coverage
-          env:
-            CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID}}
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID}}
 
