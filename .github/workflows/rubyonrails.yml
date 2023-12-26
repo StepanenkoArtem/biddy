@@ -25,17 +25,18 @@ jobs:
           echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
           echo "RAILS_ENV=test" >> .env
           echo "CC_TEST_REPORTER_ID=${{ secrets.CC_TEST_REPORTER_ID}}" >> .env
-      - name: Fetch reporter
-        run: |
-          curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
-          chmod +x test_reporter
       - name: Run tests
         run: |
           make db-create
           make migration
           ./test_reporter before-build
           make test
-          ./test_reporter after-build
+          ls -al coverage
+      - name: Store coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage_report
+          path: coverage/coverage.json
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
@@ -76,4 +77,26 @@ jobs:
           make db-create
           make migration
           make doctor
-
+  coverage:
+    needs: [ test ]
+    name: Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code1
+        uses: actions/checkout@v4
+      - name: Download coverage
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage_report
+      - name: Check
+        run: |
+          ls -al
+      - name: Fetch reporter
+        run: |
+          curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
+          chmod 777 test_reporter
+          ls -al
+      - name: Upload report
+        run: |
+          ./test_reporter before-build
+          ./test_reporter after-build
