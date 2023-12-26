@@ -68,14 +68,14 @@ jobs:
           make db-create
           make migration
           make doctor
-  # coverage:
-  #   needs: [ test ]
-  #   name: Coverage
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code1
-  #       uses: actions/checkout@v4
-  #     - name: Use Codeclimate Action
-  #       uses: paambaati/codeclimate-action@v2.2.4
-  #       env:
-  #         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  coverage:
+    needs: [ test ]
+    name: Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code1
+        uses: actions/checkout@v4
+      - name: Use Codeclimate Action
+        uses: paambaati/codeclimate-action@v2.2.4
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
