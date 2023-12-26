@@ -98,7 +98,7 @@ jobs:
           ls -al
       - name: Upload report
         run: |
-          ./test_reporter before-build
+          # ./test_reporter before-build
           ./test_reporter format-coverage -t simplecov
           ls -al coverage
           ./test_reporter upload-coverage
