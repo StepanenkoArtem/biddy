@@ -32,9 +32,9 @@ jobs:
         run: |
           make db-create
           make migration
-          test_reporter before-build
+          ./test_reporter before-build
           make test
-          test_reporter after-build
+          ./test_reporter after-build
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
