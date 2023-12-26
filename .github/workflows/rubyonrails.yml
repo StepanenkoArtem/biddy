@@ -12,8 +12,6 @@ jobs:
   test:
     name: "RSpec"
     runs-on: ubuntu-latest
-    env:
-      CC_TEST_REPORTER_ID: {{ secrets.CC_TEST_REPORTER_ID }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,6 +27,8 @@ jobs:
         run: |
           curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
       - name: Run tests
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         run: |
           make db-create
           make migration
