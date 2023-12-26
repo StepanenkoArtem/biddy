@@ -26,6 +26,7 @@ jobs:
       - name: Fetch Coverage Reporter
         run: |
           curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
+          chmod -x ./test_reporter
       - name: Run tests
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
