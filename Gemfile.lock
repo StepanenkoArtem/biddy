@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.5.0)
+      concurrent-ruby (~> 1.0)
     actioncable (7.0.8)
       actionpack (= 7.0.8)
       activesupport (= 7.0.8)
@@ -386,6 +388,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  aasm
   active_record_doctor
   bcrypt (~> 3.1.7)
   bootsnap
@@ -415,7 +418,8 @@ DEPENDENCIES
   rubocop-rspec
   ruby-lsp
   sidekiq
-  simplecov (~> 0.22.0)
+  simplecov
+  simplecov_json_formatter
   slim-rails
   sprockets-rails
   stimulus-rails

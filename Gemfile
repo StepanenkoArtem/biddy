@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
 
+gem 'aasm'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
@@ -20,7 +21,6 @@ gem 'redis', '~> 4.0'
 gem 'responders', '~> 3.1'
 gem 'rubocop-capybara', '~> 2.18'
 gem 'sidekiq'
-gem 'simplecov', '~> 0.22.0'
 gem 'slim-rails'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
@@ -50,4 +50,5 @@ end
 group :test do
   gem 'capybara'
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'simplecov', require: false
 end
