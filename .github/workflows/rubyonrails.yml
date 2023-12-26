@@ -30,6 +30,7 @@ jobs:
           make db-create
           make migration
           make test
+          ls -al
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
@@ -70,21 +71,21 @@ jobs:
           make db-create
           make migration
           make doctor
-  coverage:
-    needs: [ test ]
-    name: Coverage
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code1
-        uses: actions/checkout@v4
-      - name: Fetch reporter
-        run: |
-          curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
-          chmod 777 test_reporter
-          ls -al
-      - name: Upload report
-        run: |
-          echo "#################################################"
-          ls -al
-          echo "#################################################"
-          env
+  # coverage:
+  #   needs: [ test ]
+  #   name: Coverage
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code1
+  #       uses: actions/checkout@v4
+  #     - name: Fetch reporter
+  #       run: |
+  #         curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
+  #         chmod 777 test_reporter
+  #         ls -al
+  #     - name: Upload report
+  #       run: |
+  #         echo "#################################################"
+  #         ls -al
+  #         echo "#################################################"
+  #         env
