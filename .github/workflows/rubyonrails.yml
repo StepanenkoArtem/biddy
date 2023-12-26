@@ -75,6 +75,12 @@ jobs:
     steps:
       - name: Checkout code1
         uses: actions/checkout@v4
+      - uses: actions/setup-node@master
+        with:
+          node-version: '12'
+      - run: npm install -g yarn
+      - run: yarn install
+      - run: yarn build
       - name: Use Codeclimate Action
         uses: paambaati/codeclimate-action@v2.2.4
         env:
