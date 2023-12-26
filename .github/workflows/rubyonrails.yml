@@ -27,15 +27,13 @@ jobs:
           echo "CC_TEST_REPORTER_ID=${{ secrets.CC_TEST_REPORTER_ID}}" >> .env
       - name: Run tests
         run: |
-          make db-create
-          make migration
           make test
           ls -al coverage
       - name: Store coverage report
         uses: actions/upload-artifact@v3
         with:
           name: coverage_report
-          path: coverage/coverage.json
+          path: coverage
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
