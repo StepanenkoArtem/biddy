@@ -30,7 +30,7 @@ jobs:
           make db-create
           make migration
           make test
-          ls -al
+          ls -al coverage
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
