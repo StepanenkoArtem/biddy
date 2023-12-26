@@ -99,6 +99,6 @@ jobs:
       - name: Upload report
         run: |
           # ./test_reporter before-build
-          ./test_reporter format-coverage -t simplecov
+          ./test_reporter format-coverage -t simplecov -p /home/biddy
           ls -al coverage
           ./test_reporter upload-coverage
