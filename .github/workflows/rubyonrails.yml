@@ -27,6 +27,8 @@ jobs:
           echo "CC_TEST_REPORTER_ID=${{ secrets.CC_TEST_REPORTER_ID}}" >> .env
       - name: Run tests
         run: |
+          make db-create
+          make migration
           make test
           ls -al coverage
       - name: Store coverage report
