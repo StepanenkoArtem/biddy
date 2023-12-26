@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: coverage_report
-          path: coverage/coverage.json
+          path: coverage
   lint:
     name: "Rubocop"
     runs-on: ubuntu-latest
@@ -87,6 +87,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: coverage_report
+          path: coverage
       - name: Check
         run: |
           ls -al
