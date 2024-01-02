@@ -20,12 +20,15 @@ jobs:
       POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
       POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
       RAILS_ENV: ${{ vars.RAILS_ENV }}
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID}}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Run tests
         run: |
+          chmod -R 777 .
+          make build
           make db-create
           make migration
           make test
@@ -58,13 +61,14 @@ jobs:
       POSTGRES_USER: ${{ vars.POSTGRES_USER }}
       POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
       POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
-      RAILS_ENV: $${{ vars.RAILS_ENV }}
+      RAILS_ENV: ${{ vars.RAILS_ENV }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Run doctor
         run: |
-          make install
+          chmod -R 777 .
+          make build
           make db-create
           make migration
           make doctor

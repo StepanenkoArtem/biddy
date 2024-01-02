@@ -22,8 +22,7 @@ rubocop-happy:
 	docker compose run --rm app bin/bundle exec rubocop -A
 
 test:
-	docker compose run --rm app bin/bundle exec rspec -fd
-
+	docker compose run --rm -e RAILS_ENV=test app bin/bundle exec rspec -fd 
 db-create:
 	docker compose run --rm app bin/rails db:create
 
