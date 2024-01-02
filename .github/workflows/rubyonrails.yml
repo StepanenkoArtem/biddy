@@ -19,6 +19,7 @@ jobs:
       POSTGRES_USER: ${{ vars.POSTGRES_USER }}
       POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
       POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
+      RAILS_ENV: ${{ vars.RAILS_ENV }}
 
     steps:
       - name: Checkout code
@@ -39,8 +40,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Prepare Env
-        run: touch .env
       - name: Run rubocop
         run: make lint
   brakeman:
@@ -49,8 +48,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Prepare Env
-        run: touch .env
       - name: Run brakman
         run: make brakeman
   active_record_doctor:
@@ -61,6 +58,7 @@ jobs:
       POSTGRES_USER: ${{ vars.POSTGRES_USER }}
       POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
       POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
+      RAILS_ENV: $${{ vars.RAILS_ENV }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -82,9 +80,6 @@ jobs:
         with:
           name: coverage_report
           path: coverage
-      - name: Check
-        run: |
-          ls -al
       - name: Fetch reporter
         run: |
           curl -L codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o test_reporter
