@@ -24,6 +24,10 @@ Metrics/BlockLength:
   Exclude:
     - db/**/*
 
+Style/StringLiterals:
+  Exclude:
+    - db/**/*
+
 Style/Documentation:
   Enabled: false
 
