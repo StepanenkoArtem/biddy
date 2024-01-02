@@ -14,6 +14,12 @@ jobs:
   test:
     name: "RSpec"
     runs-on: ubuntu-latest
+    env:
+      - POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}
+      - POSTGRES_USER=${{ vars.POSTGRES_USER }}
+      - POSTGRES_HOST=${{ vars.POSTGRES_HOST }}
+      - POSTGRES_PORT=${{ vars.POSTGRES_PORT }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -50,6 +56,11 @@ jobs:
   active_record_doctor:
     name: "AR Doctor"
     runs-on: ubuntu-latest
+    env:
+      - POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}
+      - POSTGRES_USER=${{ vars.POSTGRES_USER }}
+      - POSTGRES_HOST=${{ vars.POSTGRES_HOST }}
+      - POSTGRES_PORT=${{ vars.POSTGRES_PORT }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
