@@ -17,16 +17,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Prepare Env
-        run: |
-          chmod -R 777 .
-          env >> .env
-          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" > .env
-          echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
-          echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
-          echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
-          echo "RAILS_ENV=test" >> .env
-          echo "CC_TEST_REPORTER_ID=${{ secrets.CC_TEST_REPORTER_ID}}" >> .env
       - name: Run tests
         run: |
           make db-create
@@ -63,14 +53,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Prepare Env
-        run: |
-          chmod -R 777 .
-          echo "POSTGRES_USER=${{ vars.POSTGRES_USER }}" > .env
-          echo "POSTGRES_PASSWORD=${{ vars.POSTGRES_PASSWORD }}" >> .env
-          echo "POSTGRES_HOST=${{ vars.POSTGRES_HOST }}" >> .env
-          echo "POSTGRES_PORT=${{ vars.POSTGRES_PORT }}" >> .env
-          echo "RAILS_ENV=test" >> .env
       - name: Run doctor
         run: |
           make install

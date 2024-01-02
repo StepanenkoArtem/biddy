@@ -8,6 +8,7 @@ sidekiq:
 
 build:
 	docker compose build --no-cache
+
 watch:
 	docker compose run --rm app bin/dev
 
