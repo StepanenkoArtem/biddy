@@ -9,7 +9,7 @@ ENV USER_GROUP=biddy
 
 # Create a group and user
 RUN addgroup -g 1000 ${USER_GROUP} && \
-  adduser -u 1000 -G ${USER} -s /bin/sh -D ${USER} 
+  adduser -u 1000 -G ${USER} -s /bin/sh -D ${USER}
 
 # Change to non-root privilege
 USER ${USER}:${USER_GROUP}
@@ -17,8 +17,6 @@ USER ${USER}:${USER_GROUP}
 ENV GEM_HOME=/home/${USER}/gems
 ENV BUNDLE_PATH="$GEM_HOME"
 ENV PATH="$BUNDLE_PATH/bin:$PATH"
-
-COPY Gemfile entrypoint.sh ./
 
 WORKDIR /home/${USER}/web
 

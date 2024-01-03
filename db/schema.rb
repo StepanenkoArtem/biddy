@@ -58,13 +58,13 @@ ActiveRecord::Schema[7.0].define(version: 20_231_225_164_752) do
     t.index ['key'], name: 'index_active_storage_blobs_on_key', unique: true
   end
 
-  # rubocop:disable Rails/CreateTableWithTimestamps
+  # rubocop:disable Rails/CreateTableWithTimestamps:
   create_table 'active_storage_variant_records', force: :cascade do |t|
     t.bigint 'blob_id', null: false
     t.string 'variation_digest', null: false
     t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
   end
-  # rubocop:enable Rails/CreateTableWithTimestamps
+  # rubocop:enable Rails/CreateTableWithTimestamps:
 
   create_table 'users', force: :cascade do |t|
     t.string 'email', default: '', null: false

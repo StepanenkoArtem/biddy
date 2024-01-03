@@ -419,7 +419,6 @@ DEPENDENCIES
   ruby-lsp
   sidekiq
   simplecov
-  simplecov_json_formatter
   slim-rails
   sprockets-rails
   stimulus-rails
