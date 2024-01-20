@@ -18,8 +18,6 @@ ENV GEM_HOME=/home/${USER}/gems
 ENV BUNDLE_PATH="$GEM_HOME"
 ENV PATH="$BUNDLE_PATH/bin:$PATH"
 
-COPY Gemfile entrypoint.sh ./
-
 WORKDIR /home/${USER}/web
 
 COPY --chown=${USER}:${USER_GROUP} . .
